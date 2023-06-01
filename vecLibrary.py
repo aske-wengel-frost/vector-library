@@ -62,8 +62,7 @@ class Vector:
         if angle is not None:
             if self.pos == None: 
                 self.pos = Point(0,0)
-            self.end = Point(self.pos.x + (length * cos(radians(angle))), 
-                             self.pos.y + (length * sin(radians(angle))))
+            self.end = Point(self.pos.x + (length * cos(radians(angle))), self.pos.y + (length * sin(radians(angle))))
 
         elif end is None: 
             self.pos = Point(0,0)
@@ -74,5 +73,20 @@ class Vector:
 
 def __str__(self) -> str:
     '''Returns a string of the given vector's value rounded.'''
-    return()
+    return(f"Position: {self.pos}, endpoinh: {self.end}, " + f"size: [x{self.x:.2f}, y: {self.y:.2f}], length: {self.length:.2f}, angle: {self.angle.2f}")
+
+def render(self, pyplot, ax):
+    '''Renders vector using matplotlib.pyplot and matplotlib.fig/ax'''
+    pyplot.quiver([self.pos[0]], [self.pos[1]], [self.x], [self.y], angles="xy", scale_units"xy", scale=1, color=self.color)
+
+    # Length-text
+    pyplot.text(self.pos[0] + self.x/2, self.pos[1]+self.y/2 + 0.3, color=self.color, s=f"length: {self.length:.2f}", rotation=self.angle, horizontalalignment="center", verticalalignment="center")
+
+    # Startpoint-text
+    pyplot.text(self.pos[0], self.pos[1] + 0.3, color=self.color, s=self.length, horizontalalignment="center", verticalalignment="center")
+
+
+
+
+
 
