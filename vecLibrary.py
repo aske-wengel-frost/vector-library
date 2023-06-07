@@ -103,3 +103,5 @@ def render(self, pyplot, ax):
                 verticalalignment="center")
     # Next up; figuring out how to check angle-text.
 
+def print_test():
+    print("hello test")
