@@ -99,5 +99,3 @@ def render(self, pyplot, ax):
                 verticalalignment="center")
 
 # This render function is not done yet. Planning to implement text for all other scenarios.
-def hello ():
-    print('hello git')
