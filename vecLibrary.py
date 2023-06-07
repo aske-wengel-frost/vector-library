@@ -98,4 +98,8 @@ def render(self, pyplot, ax):
     pyplot.text(self.pos[0], self.pos[1] + 0.3, color=self.color, s=self.length, horizontalalignment="center",
                 verticalalignment="center")
 
-# This render function is not done yet. Planning to implement text for all other scenarios.
+    # Endpoint-text
+    pyplot.text(self.end[0], self.end[1] + 0.04, color=self.color, s=self.end, horizontalalignment="center",
+                verticalalignment="center")
+    # Next up; figuring out how to check angle-text.
+
