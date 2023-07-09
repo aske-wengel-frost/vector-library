@@ -101,7 +101,8 @@ def render(self, pyplot, ax):
     # Endpoint-text
     pyplot.text(self.end[0], self.end[1] + 0.04, color=self.color, s=self.end, horizontalalignment="center",
                 verticalalignment="center")
-    # Next up; figuring out how to check angle-text.
 
-def print_test():
-    print("hello test")
+    #Angl-text and semmi-circle
+    direction = -1 if self.x<0 else 1
+    aScrav1 = None
+# This is a test commit
