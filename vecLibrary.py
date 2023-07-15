@@ -1,5 +1,7 @@
-from __future__ import annotations from math import cos, sin, atan, radians,
-sqrt import matplotlib.pyplot as plt from matplotlib.patches import Wedge
+from __future__ import annotations 
+from math import cos, sin, atan, radians,sqrt 
+import matplotlib.pyplot as plt 
+from matplotlib.patches import Wedge
 
 
 # Converts string to float. There may occur errors during rounding. This is
@@ -76,5 +78,12 @@ pyplot.text(self.pos[0], self.pos[1] + 0.3, color=self.color, s=self.length,
 pyplot.text(self.end[0], self.end[1] + 0.04, color=self.color, s=self.end,
             horizontalalignment="center", verticalalignment="center")
 
-#Angl-text and semmi-circle direction = -1 if self.x<0 else 1 aScrav1 = None
+#Angl-text and semmi-circle 
+direction = -1 if self.x<0 else 1 # Where to write the text info 
+aScrav1 = None
+
+# Only makes wedges counterclockwise, therefore we need to figure 
+start_angle = 0
+end_angle = self.angle
+
     
