@@ -1,10 +1,10 @@
 from __future__ import annotations
-from math import cos, sin, atan, radians, sqrt
+from math import cos, sin, atan, radians, sqrt, pi
 import matplotlib.pyplot as plt
 from matplotlib.patches import Wedge 
 
-# Converts string to float. There may occur errors during rounding. This is caused by python's rounding-method.
-pi = 22/7
+# Converts string to float. There may occur errors during rounding. 
+# This is caused by python's rounding-method.
 def strToFloat(s:str):
     stringSplit:list[str] = s.split(".")
     if len(stringSplit)==1:
@@ -42,7 +42,8 @@ class Vector:
     Takes given input in form of points (using the class: Points),
 or length and angle in order to calculate or visualize. 
     '''
-    def __init__(self, pos:Point=None, end:Point=None, length:float=None,angle:float=None,color:str="red"):
+    def __init__(self, pos:Point=None, end:Point=None, length:float=None,
+                 angle:float=None,color:str="red"):
         '''
         Create a vector
              using either length and angle, start- and endpoint or x- and
@@ -70,36 +71,39 @@ or length and angle in order to calculate or visualize.
             self.end = Point(pos.x,pos.y)
         self.x = self.end.x-self.pos.x
         self.y = self.end.y-self.pos.y
-        self.length = sqrt(self.x**2+self.y**2) # calculates length using pythagoras theorem. 
+        # Calculates length using pythagoras theorem.
+        self.length = sqrt(self.x**2+self.y**2)  
         self.angle = atan(self.y/self.x)*(180/pi)
 
     def __str__(self) -> str:
         '''Returns a string of the vector's values rounded'''
-        return (f"Position: {self.pos}, Endpoint: {self.end},"
-                + f" Size: [x:{self.x:.2f}, y:{self.y:.2f}], r: {self.length:.2f}, Vinkel: {self.angle:.2f}")
+        return (f"Position: {self.pos}, Endpoint: {self.end}," + f" Size: [x:{self.x:.2f}, y:{self.y:.2f}],r: {self.length:.2f}, Angle: {self.angle:.2f}")
 
     def render(self, p, ax):
         """Renders vector using matplotlib.pyplot and
 matplotlib.fig/ax"""
-        p.quiver([self.pos[0]], [self.pos[1]], [self.x], [self.y], angles='xy', scale_units='xy', scale=1, color=self.color)
+        p.quiver([self.pos[0]], [self.pos[1]], [self.x], [self.y], angles='xy',
+                 scale_units='xy', scale=1, color=self.color)
 
         # Length text
         p.text(self.pos[0]+self.x/2,self.pos[1]+self.y/2+0.3,color=self.color,
-                s=f"r: {self.length:.2f}",rotation=self.angle,horizontalalignment='center', verticalalignment='center')
+               s=f"r: {self.length:.2f}",rotation=self.angle,
+               horizontalalignment='center', verticalalignment='center')
 
         # Startpoint text
-        p.text(self.pos[0],self.pos[1]+0.3,color=self.color,
-                s=self.pos,horizontalalignment='center', verticalalignment='center')
+        p.text(self.pos[0],self.pos[1]+0.3,color=self.color, s=self.pos,
+               horizontalalignment='center', verticalalignment='center')
 
         # Endpoint text
-        p.text(self.end[0],self.end[1]+0.4,color=self.color,
-                s=self.end,horizontalalignment='center', verticalalignment='center')
+        p.text(self.end[0],self.end[1]+0.4,color=self.color, s=self.end,
+               horizontalalignment='center', verticalalignment='center')
 
         # Angle-text and semi-circle
-        direction = -1 if self.x<0 else 1#   Where to write the text
+        direction = -1 if self.x<0 else 1 #   Where to write the text
         angle_patch = None
 
-        #   It only makes wedges counterclockwise, so figuring out where the start and end-angles
+        #  It only makes wedges counterclockwise, so figuring out where the 
+        #  start and end-angles are.
         start_angle = 0
         end_angle = self.angle
         
@@ -115,13 +119,15 @@ matplotlib.fig/ax"""
                 startA = 0+self.angle
                 end_angle = 0
 
-        #       Make the wedge and add it to the figure
-        aScrav1 = Wedge([self.pos.x,self.pos.y], 0.6,startA,end_angle, alpha=0.3, color=self.color)
-        ax.add_patch(aScrav1)
+        # Makes the wedge and adds it to the figure
+        angle_patch = Wedge([self.pos.x,self.pos.y], 0.6,start_angle, end_angle,
+                            alpha=0.3, color=self.color)
+        ax.add_patch(angle_patch)
 
-        #       Angle text
+        # Angle-text
         p.text(self.pos.x+_dir,self.pos.y,color=self.color,
-                s=f"θ: {self.angle:.2f}°",horizontalalignment='center', verticalalignment='center')
+               s=f"θ: {self.angle:.2f}°",horizontalalignment='center', 
+               verticalalignment='center')
 
 # Calculates and returns the scalar product of two given vectors.
 def scalar_product(self, value=Vector) -> float:
