@@ -12,7 +12,32 @@ def strToFloat(s:str):
     return int(stringSplit[0])+(int(stringSplit[1][0])/10)
 
 class Point:
+     '''
+    Represents a 2D point with x and y coordinates.
 
+    Attributes:
+        x (float): The x-coordinate of the point.
+        y (float): The y-coordinate of the point.
+
+    Methods:
+        __init__(self, x: float, y: float)
+            Initialize a Point object with the given x and y coordinates.
+
+        __getitem__(self, key: int) -> float
+            Returns the value of the coordinate corresponding to the given index.
+            Index 0 corresponds to the x-coordinate, and index 1 corresponds to the y-coordinate.
+
+        __setitem__(self, key: int, value: float)
+            Sets the value of the coordinate corresponding to the given index.
+            Index 0 corresponds to the x-coordinate, and index 1 corresponds to the y-coordinate.
+
+        __str__(self) -> str
+            Returns a string representation of the Point object in the format "(x; y)" with two decimal places.
+
+    Example:
+        point = Point(3.5, 2.0)
+        print(point)  # Output: (3.50; 2.00)
+    '''
     def __init__(self, x:float, y:float):
         '''Initialize a point with an x- and y-coordinate'''
         self.x = x
@@ -39,9 +64,54 @@ class Point:
 
 class Vector:
     '''
-    Takes given input in form of points (using the class: Points),
-or length and angle in order to calculate or visualize. 
-    '''
+    Represents a 2D vector with various methods for calculation and visualization.
+
+    Attributes:
+        pos (Point): The starting point (origin) of the vector.
+        end (Point): The endpoint of the vector.
+        length (float): The magnitude (length) of the vector.
+        angle (float): The angle (in degrees) between the vector and the positive x-axis.
+        color (str): The color used for rendering the vector (default is "red").
+
+    Methods:
+        __init__(self, pos: Point = None, end: Point = None, length: float = None,
+                 angle: float = None, color: str = "red")
+            Create a Vector object using one of the following methods:
+                1. Specify length and angle to calculate the endpoint from the starting point.
+                2. Specify both the starting and endpoint directly.
+                3. Specify x and y components to calculate the length and angle.
+
+        __str__(self) -> str
+            Returns a string representation of the vector with rounded values.
+
+        render(self, p, ax)
+            Renders the vector using matplotlib.pyplot and matplotlib.axes.Axes.
+
+        scalar_product(self, value: Vector) -> float
+            Calculates and returns the scalar product (dot product) of two vectors.
+
+        determinant(self, value: Vector) -> float
+            Calculates and returns the determinant (cross product) of two vectors.
+
+        __eq__(self, value: Vector) -> bool
+            Returns True if the x and y values of both vectors are the same, ignoring position.
+
+    Example:
+        # Create a vector using length and angle
+        vector1 = Vector(length=5.0, angle=30.0)
+
+        # Create a vector with specified start and endpoint
+        start_point = Point(1.0, 2.0)
+        end_point = Point(4.0, 6.0)
+        vector2 = Vector(pos=start_point, end=end_point)
+
+        # Create a vector using x and y components
+        vector3 = Vector(2.0, 3.0)
+
+        # Perform vector operations
+        scalar_product_result = vector1.scalar_product(vector2)
+        determinant_result = vector1.determinant(vector3)
+    ''' 
     def __init__(self, pos:Point=None, end:Point=None, length:float=None,
                  angle:float=None,color:str="red"):
         '''
