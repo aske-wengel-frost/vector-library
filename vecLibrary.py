@@ -129,6 +129,16 @@ matplotlib.fig/ax"""
                s=f"θ: {self.angle:.2f}°",horizontalalignment='center', 
                verticalalignment='center')
 
-# Calculates and returns the scalar product of two given vectors.
 def scalar_product(self, value=Vector) -> float:
+    '''Calculates and returns the scalarproduct of two given vectors.'''
     return((self.x*value.x)+(self.y*value.y))
+
+def determinant(self, value=Vector) -> float:
+    '''Returns determinant of given vectors'''
+    return((self.x*value.y)-(self.y*value.x))
+
+def __eq__(self, value=Vector) -> float:
+    '''Returns True if the x and y values of both vectors are the same. 
+    Ignoring position completely'''
+    return(self.x == value.x and self.y == value.y)
+
