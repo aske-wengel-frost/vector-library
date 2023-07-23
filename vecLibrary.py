@@ -82,20 +82,20 @@ or length and angle in order to calculate or visualize.
     def render(self, p, ax):
         """Renders vector using matplotlib.pyplot and
 matplotlib.fig/ax"""
-        p.quiver([self.pos[0]], [self.pos[1]], [self.x], [self.y], angles='xy',
+        plt.quiver([self.pos[0]], [self.pos[1]], [self.x], [self.y], angles='xy',
                  scale_units='xy', scale=1, color=self.color)
 
         # Length text
-        p.text(self.pos[0]+self.x/2,self.pos[1]+self.y/2+0.3,color=self.color,
+        plt.text(self.pos[0]+self.x/2,self.pos[1]+self.y/2+0.3,color=self.color,
                s=f"r: {self.length:.2f}",rotation=self.angle,
                horizontalalignment='center', verticalalignment='center')
 
         # Startpoint text
-        p.text(self.pos[0],self.pos[1]+0.3,color=self.color, s=self.pos,
+        plt.text(self.pos[0],self.pos[1]+0.3,color=self.color, s=self.pos,
                horizontalalignment='center', verticalalignment='center')
 
         # Endpoint text
-        p.text(self.end[0],self.end[1]+0.4,color=self.color, s=self.end,
+        plt.text(self.end[0],self.end[1]+0.4,color=self.color, s=self.end,
                horizontalalignment='center', verticalalignment='center')
 
         # Angle-text and semi-circle
@@ -125,7 +125,7 @@ matplotlib.fig/ax"""
         ax.add_patch(angle_patch)
 
         # Angle-text
-        p.text(self.pos.x+_dir,self.pos.y,color=self.color,
+        plt.text(self.pos.x+direction,self.pos.y,color=self.color,
                s=f"θ: {self.angle:.2f}°",horizontalalignment='center', 
                verticalalignment='center')
 
