@@ -95,6 +95,12 @@ class Vector:
 
         __eq__(self, value: Vector) -> bool
             Returns True if the x and y values of both vectors are the same, ignoring position.
+        
+        __len__(self) -> float:
+            Returns the length of the vector
+      
+        difference(self, value:Vector) -> Vector:
+            Returns the result of two vectors subtracted.
 
     Example:
         # Create a vector using length and angle
