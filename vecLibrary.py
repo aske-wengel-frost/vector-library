@@ -12,7 +12,7 @@ def strToFloat(s:str):
     return int(stringSplit[0])+(int(stringSplit[1][0])/10)
 
 class Point:
-     '''
+    '''
     Represents a 2D point with x and y coordinates.
 
     Attributes:
@@ -212,3 +212,16 @@ def __eq__(self, value=Vector) -> float:
     Ignoring position completely'''
     return(self.x == value.x and self.y == value.y)
 
+def __len__(self) -> float:
+    '''Returns the length of the vector'''
+    return(self.length)
+
+def difference(self, value:Vector) -> Vector:
+    '''Returns the result of two vectors subtracted.'''
+    if type(value) != type(self):
+        raise ValueError(f"Can't subtract {type(value)} from the vector")
+    self.x -= value.x
+    self.y -= value.y
+    self.angle = atan(self.y/self.x)*(180/pi)
+    self.end = Point(self.pos.x+self.x, self.pos.y+self.y)
+    return(self)
