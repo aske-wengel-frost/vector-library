@@ -146,13 +146,16 @@ class Vector:
         Examples: // Position vectors: Vector(pos: Point) Vector(length: float,
         angle: float) // Connection vectors: Vector(pos: Point, end: Point)
         """
+        if pos is None:
+            pos = Point(0, 0)
+
         self.color = color
         self.pos = pos
         self.end = end
 
         #  Angle and Length
         if angle is not None:
-            if self.pos == None:
+            if self.pos is None:
                 self.pos = Point(0, 0)
             self.end = Point(
                 self.pos.x + (length * cos(radians(angle))),
@@ -174,8 +177,9 @@ class Vector:
     def __str__(self) -> str:
         """Returns a string of the vector's values rounded"""
         return (
-            f"Position: {self.pos}, Endpoint: {self.end},"
-            + f" Size: [x:{self.x:.2f}, y:{self.y:.2f}],r: {self.length:.2f}, Angle: {self.angle:.2f}"
+            f"Position: {self.pos}, Endpoint: {self.end}, "
+            f"Size: [x:{self.x:.2f}, y:{self.y:.2f}], "
+            f"r: {self.length:.2f}, Angle: {self.angle:.2f}"
         )
 
     def render(self, p, ax):
@@ -208,7 +212,7 @@ class Vector:
             self.pos[0],
             self.pos[1] + 0.3,
             color=self.color,
-            s=self.pos,
+            s=str(self.pos),
             horizontalalignment="center",
             verticalalignment="center",
         )
@@ -218,7 +222,7 @@ class Vector:
             self.end[0],
             self.end[1] + 0.4,
             color=self.color,
-            s=self.end,
+            s=str(self.end),
             horizontalalignment="center",
             verticalalignment="center",
         )
@@ -265,34 +269,29 @@ class Vector:
             verticalalignment="center",
         )
 
+    def scalar_product(self, value: Vector) -> float:
+        """Calculates and returns the scalarproduct of two given vectors."""
+        return (self.x * value.x) + (self.y * value.y)
 
-def scalar_product(self, value=Vector) -> float:
-    """Calculates and returns the scalarproduct of two given vectors."""
-    return (self.x * value.x) + (self.y * value.y)
+    def determinant(self, value: Vector) -> float:
+        """Returns determinant of given vectors"""
+        return (self.x * value.y) - (self.y * value.x)
 
+    def __eq__(self, value: Vector) -> float:
+        """Returns True if the x and y values of both vectors are the same.
+        Ignoring position completely"""
+        return self.x == value.x and self.y == value.y
 
-def determinant(self, value=Vector) -> float:
-    """Returns determinant of given vectors"""
-    return (self.x * value.y) - (self.y * value.x)
+    def __len__(self) -> float:
+        """Returns the length of the vector"""
+        return self.length
 
-
-def __eq__(self, value=Vector) -> float:
-    """Returns True if the x and y values of both vectors are the same.
-    Ignoring position completely"""
-    return self.x == value.x and self.y == value.y
-
-
-def __len__(self) -> float:
-    """Returns the length of the vector"""
-    return self.length
-
-
-def difference(self, value: Vector) -> Vector:
-    """Returns the result of two vectors subtracted."""
-    if type(value) != type(self):
-        raise ValueError(f"Can't subtract {type(value)} from the vector")
-    self.x -= value.x
-    self.y -= value.y
-    self.angle = atan(self.y / self.x) * (180 / pi)
-    self.end = Point(self.pos.x + self.x, self.pos.y + self.y)
-    return self
+    def difference(self, value: Vector) -> Vector:
+        """Returns the result of two vectors subtracted."""
+        if type(value) != type(self):
+            raise ValueError(f"Can't subtract {type(value)} from the vector")
+        self.x -= value.x
+        self.y -= value.y
+        self.angle = atan(self.y / self.x) * (180 / pi)
+        self.end = Point(self.pos.x + self.x, self.pos.y + self.y)
+        return self
