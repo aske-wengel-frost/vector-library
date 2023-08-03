@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 from vecLibrary import (
     Vector,
     Point,
@@ -7,7 +8,6 @@ from vecLibrary import (
     __str__,
     difference,
 )
-import matplotlib.pyplot as plt
 
 vec_a = Vector(Point(2, 3))
 vec_b = Vector(Point(4, 8), color="blue")
