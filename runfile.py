@@ -1,18 +1,26 @@
-from vecLibrary import Vector, Point, scalar_product, determinant, __eq__,  __str__, difference
+from vecLibrary import (
+    Vector,
+    Point,
+    scalar_product,
+    determinant,
+    __eq__,
+    __str__,
+    difference,
+)
 import matplotlib.pyplot as plt
 
-vec_a = Vector(Point(2,3))
-vec_b = Vector(Point(4,8), color="blue")
+vec_a = Vector(Point(2, 3))
+vec_b = Vector(Point(4, 8), color="blue")
 
-vec_c = Vector(Point(2,5), color="purple")
-vec_d = Vector(Point(2,5), color="purple")
+vec_c = Vector(Point(2, 5), color="purple")
+vec_d = Vector(Point(2, 5), color="purple")
 
 print(scalar_product(vec_a, vec_b))
 print(determinant(vec_a, vec_b))
 print(__eq__(vec_c, vec_d))
 print(difference(vec_b, vec_c))
 
-point_1 = Point(1,2)
+point_1 = Point(1, 2)
 x_coordinate = point_1.__getitem__(0)
 print("point_1's x-coordinate:", x_coordinate)
 
@@ -31,5 +39,4 @@ plt.grid()
 # Set the window title
 # without '.manger' if running on windows.
 plt.gcf().canvas.manager.set_window_title("Vector visualization")
-#plt.show()
-
+plt.show()
