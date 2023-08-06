@@ -6,11 +6,11 @@ from matplotlib.patches import Wedge
 
 # Converts string to float. There may occur errors during rounding.
 # This is caused by python's rounding-method.
-def strToFloat(s: str):
-    stringSplit: list[str] = s.split(".")
-    if len(stringSplit) == 1:
-        return int(stringSplit[0]) + 0.0
-    return int(stringSplit[0]) + (int(stringSplit[1][0]) / 10)
+def string_to_float(s: str):
+    string_split: list[str] = s.split(".")
+    if len(string_split) == 1:
+        return int(string_split[0]) + 0.0
+    return int(string_split[0]) + (int(string_split[1][0]) / 10)
 
 
 class Point:
