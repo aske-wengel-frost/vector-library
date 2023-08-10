@@ -2,11 +2,6 @@ import matplotlib.pyplot as plt
 from vecLibrary import (
     Vector,
     Point,
-    scalar_product,
-    determinant,
-    __eq__,
-    __str__,
-    difference,
 )
 
 # Create vectors
@@ -16,10 +11,13 @@ vec_c = Vector(Point(2, 5), color="purple")
 vec_d = Vector(Point(2, 5), color="purple")
 
 # Trying out the different functions
-print(scalar_product(vec_a, vec_b))
+
+"""print(scalar_product(vec_a, vec_b))
 print(determinant(vec_a, vec_b))
 print(__eq__(vec_c, vec_d))
 print(difference(vec_b, vec_c))
+"""
+
 
 # Trying out the __getitem__ function
 point_1 = Point(1, 2)
